@@ -57,7 +57,7 @@ function weatherApi(data) {
     var lat = data[0].lat;
     var lon = data[0].lon;
     //Variable for weather api by city plus the api key (concatenated)
-    var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey;
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&cnt=45&appid=' + apiKey;
 
 
 
@@ -89,7 +89,8 @@ function displayForecast(forecastData) {
     }
 
     var titleEl = document.createElement('h2');
-    titleEl.textContent = forecastData.city.name + ' (' + forecastData.list[0].dt_txt.substring(0, 10) + ')';
+    var newDate = new Date(forecastData.list[0].dt_txt);
+    titleEl.textContent = forecastData.city.name + ' (' + newDate.toLocaleDateString() + ')';
     var iconCode = forecastData.list[0].weather[0].icon;
     var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
     var imageEl = document.createElement('img');
@@ -127,7 +128,8 @@ function displayForecast(forecastData) {
 function displayFiveDays(forecastData) {
     for (var i = 0; i < 5; i++) {
         var titleEl = document.createElement('h2');
-        titleEl.textContent = forecastData.list[i * 8].dt_txt.substring(0, 10);
+        var newDate = new Date(forecastData.list[i * 8].dt_txt);
+        titleEl.textContent = forecastData.city.name + ' (' + newDate.toLocaleDateString() + ')';
         var iconCode = forecastData.list[i * 8].weather[0].icon;
         var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
         var imageEl = document.createElement('img');
@@ -135,21 +137,24 @@ function displayFiveDays(forecastData) {
         titleEl.appendChild(imageEl);
         forecastCardEl.appendChild(titleEl);
 
+        var forecastDayCards = document.createElement('div');
+        forecastDayCards.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
+        forecastCardEl.appendChild(forecastDayCards);
         var tempEl = document.createElement('p');
         var windEl = document.createElement('p');
         var humidEl = document.createElement('p');
 
         var tempData = (forecastData.list[i * 8].main.temp - 273.15) * 9 / 5 + 32;
         tempEl.innerHTML = 'Temp: ' + tempData.toFixed(2) + '°F';
-        forecastCardEl.appendChild(tempEl);
+        forecastDayCards.appendChild(tempEl);
 
         var windData = forecastData.list[i * 8].wind.speed;
         windEl.innerHTML = 'Wind: ' + windData + 'mph';
-        forecastCardEl.appendChild(windEl);
+        forecastDayCards.appendChild(windEl);
 
         var humidityData = forecastData.list[i * 8].main.humidity;
         humidEl.innerHTML = 'Humidity: ' + humidityData + '%';
-        forecastCardEl.appendChild(humidEl);
+        forecastDayCards.appendChild(humidEl);
     }
 }
 //Function to store searched city and weather results
