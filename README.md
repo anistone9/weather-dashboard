@@ -9,9 +9,9 @@ The user is required to type a city name in the search box, and hit Submit. As t
 
 ## Deployed application
 
+https://anistone9.github.io/weather-dashboard/
 
-
-![image]()
+![image](https://user-images.githubusercontent.com/58886869/216881038-30b73b16-3f2e-426a-83ae-e66a06058729.png)
 
 ## Features
 
