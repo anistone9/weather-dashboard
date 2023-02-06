@@ -31,7 +31,7 @@ function formSubmitHandler(event) {
 //Function to fetch weather API using geographical coordinates
 function cityApi(city) {
     //Variable for geocode url plus the api key (concatenated)
-    var geocodeUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=' + apiKey;
+    var geocodeUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=' + apiKey;
 
     //Clean up forecast container before fetching the API and running the function to display it
     forecastContainerEl.innerHTML = '';
