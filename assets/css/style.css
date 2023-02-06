@@ -1,10 +1,10 @@
 :root {
-    --primary: #ccdad1;
-    --secondary: #9caea9;
-    --tertiary: #788585;
-    --light-dark: #6f6866;
-    --dark: #38302e;
-    --border-radius: .3rem;
+    --primary: #3e4048;
+    --secondary: #649587;
+    --tertiary: #c2d1df;
+    --light-dark: #41809b;
+    --dark: #000101;
+    --border-radius: .1rem;
 }
 
 * {
@@ -29,8 +29,17 @@ h5,
 h6 {
     font-weight: 700;
     margin: 0;
-    color: var(--dark);
+    color: var(--tertiary);
     line-height: 1.25;
+}
+
+h2 {
+    font-size: 1.7rem;
+    margin: 20px 10px 0px 0px;
+}
+
+h3 {
+    font-size: 1.1rem;
 }
 
 main {
@@ -40,6 +49,7 @@ main {
 
 p {
     font-size: 1.2rem;
+    color: var(--tertiary);
 }
 
 .btn {
@@ -49,43 +59,15 @@ p {
     width: 100%;
     display: block;
     margin: 5px 0;
-    border-radius: var(--border-radius);
-    color: var(--primary);
+    color: #fff;
+    font-weight: bold;
     border: none;
     outline: none;
     background-color: var(--light-dark);
-    box-shadow: 3px 3px var(--dark);
     transform: translate(-1px, -1px);
 }
 
 .btn:hover {
-    color: var(--primary);
-    background-color: var(--tertiary);
-    transform: translate(0, 0);
-    box-shadow: 2px 2px var(--dark);
-}
-
-.btn-inline {
-    display: inline;
-}
-
-.btn-back {
-    border-radius: var(--border-radius);
-    color: var(--primary);
-    border: none;
-    outline: none;
-    background-color: var(--light-dark);
-    box-shadow: 3px 3px var(--secondary);
-    transform: translate(-1px, -1px);
-    display: inline-block;
-    width: auto;
-    margin-top: 20px;
-    padding: 15px;
-    text-decoration: none;
-    font-size: 1.2rem;
-}
-
-.btn-back:hover {
     color: var(--primary);
     background-color: var(--tertiary);
     transform: translate(0, 0);
@@ -104,48 +86,34 @@ p {
 
 .app-title {
     font-size: 3rem;
-    background-color: var(--primary);
-    color: var(--dark);
+    color: var(--tertiary);
     padding: 0 10px;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
     border-radius: var(--border-radius);
     box-shadow: 6px 5px var(--light-dark);
 }
 
-.forecast-city {
-    padding: 0;
-    list-style: none;
-}
-
-.forecast-item {
-    margin-bottom: 10px;
-    padding: 1.5%;
-    border-radius: var(--border-radius);
-    background-color: var(--light-dark);
-    color: var(--primary);
-    text-decoration: none;
-}
-
-.forecast-item:hover {
-    background-color: var(--dark);
-}
-
 /* CARDS */
+.card-body,
+.search-card-body {
+    margin: 0 0 10px 0px;
+    padding: 5%;
+}
+
 .card {
-    margin: 0 0 20px 0;
-    border: 3px solid var(--dark);
-    border-radius: var(--border-radius);
+    margin: 8px;
+    padding: 1%;
+    border-style: solid;
+    border-color: transparent;
+    background-color: var(--dark);
+    display: inline-block;
 }
 
 .card-header {
-    color: var(--primary);
-    background-color: var(--dark);
-    padding: 2.5%;
-    border-radius: calc(.18rem - 1px) calc(.18rem - 1px) 0 0;
-}
-
-.card-body {
-    padding: 2.5%;
+    color: var(--tertiary);
+    padding: 1.5% 0% 0% 7%;
+    font-size: 1.7rem;
 }
 
 /* FORM */
@@ -163,10 +131,29 @@ p {
 .form-input {
     width: 100%;
     padding: 3%;
-    margin: 5px 0;
+    margin: 7px 0px 7px 0px;
     font-size: 1.2rem;
-    border: 2px solid var(--light-dark);
-    border-radius: var(--border-radius);
+}
+
+.border {
+    border-style: solid;
+    border-color: #c2d1df;
+    border-width: 3px;
+}
+
+.forecast-group {
+    margin: 5px;
+    padding: 3%;
+}
+
+.forecast-subtitle {
+    margin: 10px 0px 0px 0px;
+    padding: 3%;
+}
+
+.forecast-cards {
+    margin: 10px;
+    padding: 1%;
 }
 
 /* HEIGHT / WIDTH UTILS */
@@ -176,11 +163,6 @@ p {
 
 .min-100-vw {
     min-width: 100vw;
-}
-
-/* FONT UTILS */
-.text-uppercase {
-    text-transform: uppercase;
 }
 
 

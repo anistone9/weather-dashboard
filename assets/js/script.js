@@ -3,6 +3,7 @@ var cityInputEl = document.getElementById('city-name');
 var forecastContainerEl = document.getElementById('forecast-container');
 var forecastCardEl = document.getElementById('forecast-cards');
 var cityButtons = document.getElementById('city-buttons');
+var subtitle = document.getElementById('subtitle');
 var apiKey = '010f510da36ea60a956c7518452bbcb1';
 
 //Function for event handler (submit button) to retrieve user input (city data)
@@ -30,11 +31,12 @@ function formSubmitHandler(event) {
 //Function to fetch weather API using geographical coordinates
 function cityApi(city) {
     //Variable for geocode url plus the api key (concatenated)
-    var geocodeUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=6&appid=' + apiKey;
+    var geocodeUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=' + apiKey;
 
     //Clean up forecast container before fetching the API and running the function to display it
     forecastContainerEl.innerHTML = '';
     forecastCardEl.innerHTML = '';
+    subtitle.innerHTML = '';
 
     fetch(geocodeUrl)
         .then(function (response) {
@@ -125,6 +127,8 @@ function displayForecast(forecastData) {
     forecastContainerEl.appendChild(humidEl);
     console.log(humidEl);
 
+    forecastContainerEl.classList.add('border');
+
     displayFiveDays(forecastData);
 }
 
@@ -137,19 +141,19 @@ function displayFiveDays(forecastData) {
     subtitle.appendChild(forecastSubtitle);
 
     for (var i = 0; i < 5; i++) {
-        var titleEl = document.createElement('h2');
+        var titleEl = document.createElement('h3');
         var newDate = new Date(forecastData.list[i * 8].dt_txt);
-        titleEl.textContent = forecastData.city.name + ' (' + newDate.toLocaleDateString() + ')';
+        titleEl.textContent = newDate.toLocaleDateString();
         var iconCode = forecastData.list[i * 8].weather[0].icon;
         var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
         var imageEl = document.createElement('img');
         imageEl.src = iconUrl;
-        titleEl.appendChild(imageEl);
-        forecastCardEl.appendChild(titleEl);
 
         var forecastDayCards = document.createElement('div');
-        forecastDayCards.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
-        forecastCardEl.appendChild(forecastDayCards);
+        forecastDayCards.appendChild(titleEl);
+        forecastDayCards.appendChild(imageEl);
+
+        forecastDayCards.classList.add('card');
         var tempEl = document.createElement('p');
         var windEl = document.createElement('p');
         var humidEl = document.createElement('p');
@@ -165,6 +169,7 @@ function displayFiveDays(forecastData) {
         var humidityData = forecastData.list[i * 8].main.humidity;
         humidEl.innerHTML = 'Humidity: ' + humidityData + '%';
         forecastDayCards.appendChild(humidEl);
+        forecastCardEl.appendChild(forecastDayCards);
     }
     storeCityForecast(forecastData.city.name);
 }
@@ -189,7 +194,7 @@ function storeCityForecast(storedCity) {
         var cityButton = document.createElement('a');
         //Create a button, and the name of the button becomes the value of the variable
         cityButton.textContent = storedCity;
-        cityButton.classList.add('btn', 'btn-dark');
+        cityButton.classList.add('btn');
         cityButtons.appendChild(cityButton);
         cityButtons.addEventListener('click', storedForecastHandler);
     }
@@ -215,7 +220,7 @@ function retrieveAllStored() {
         var cityButton = document.createElement('a');
         //Create a button, and the name of the button becomes the value of the variable
         cityButton.textContent = storedCity;
-        cityButton.classList.add('btn', 'btn-dark');
+        cityButton.classList.add('btn');
         cityButtons.appendChild(cityButton);
         cityButtons.addEventListener('click', storedForecastHandler);
     }
