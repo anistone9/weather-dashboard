@@ -30,9 +30,9 @@ DOM Traversal
 Event Listeners   
 Window Object   
 Setting Attributes    
-Local Storage
-Fetch API
-Dynamically Styled Elements
+Local Storage   
+Fetch API   
+Dynamically Styled Elements    
 
 ## Technologies used
 
